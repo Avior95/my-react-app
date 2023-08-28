@@ -1,5 +1,5 @@
 .App {
-  background-color: #d716d7;
+  background-color: #f9f5eb;
 }
 /* App.css (or your CSS file) */
 
@@ -15,4 +15,10 @@
 
 .icons-container a:hover {
   transform: scale(1.2); /* Increase the scaling factor for hover */
+}
+
+.product-list-container {
+  display: flex;
+  justify-content: center; /* Center-align the content horizontally */
+  gap: 20px; /* Add spacing between cards */
 }

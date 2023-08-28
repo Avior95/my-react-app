@@ -110,7 +110,7 @@ const ProductDetail = ({ products }) => {
               </div>
               <div>
                 <p style={keyValueStyle}>Quantity:</p>
-                <p>1</p>
+                <p>{product.quantity}</p>
               </div>
             </div>
           </Grid>

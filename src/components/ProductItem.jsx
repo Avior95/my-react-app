@@ -14,20 +14,20 @@ import RemoveIcon from "@mui/icons-material/Remove";
 
 import { Link } from "react-router-dom";
 
-const ProductItem = ({ product, onDelete }) => {
-  const [count, setCount] = useState(0);
+const ProductItem = ({ product, onDelete, onIncrement }) => {
+  const [count, setCount] = useState(product.quantity);
 
   const cardStyle = {
     border: "1px solid #ccc",
-    borderRadius: "30px", // Increased border-radius for rounder corners
-    overflow: "hidden", // Hide overflow to prevent content from protruding
+    borderRadius: "30px",
+    overflow: "hidden",
     boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-    display: "flex", // Use flex to arrange the image and content side by side
-    flexDirection: "column", // Stack the image and content vertically
+    display: "flex",
+    flexDirection: "column",
   };
 
   const mediaStyle = {
-    height: "250px", // Adjust the height of the media component
+    height: "250px",
   };
 
   const contentBelowImageStyle = {
@@ -37,16 +37,40 @@ const ProductItem = ({ product, onDelete }) => {
     flex: "1",
     display: "flex",
     flexDirection: "column",
+    justifyContent: "center",
+    paddingTop: "10px",
   };
 
   const iconContainerStyle = {
     display: "flex",
-    justifyContent: "flex-start", // Align icons to the left
+    flexDirection: "row", // Horizontal arrangement
+    justifyContent: "flex-start", // Align to the left
     alignItems: "center",
   };
 
   const blackIconStyle = {
-    color: "black", // Set the icon color to black
+    color: "black",
+  };
+
+  const handleIncrement = (incrementValue) => {
+    setCount((prevCount) => prevCount + incrementValue);
+    onIncrement(product.id, incrementValue);
+  };
+
+  const circleIconStyle = {
+    width: "34px",
+    height: "34px",
+    borderRadius: "50%",
+    backgroundColor: "#FFBF9B",
+    color: "black",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    transition: "background-color 0.3s ease", // Add transition for smooth color change
+  };
+
+  const iconHoverStyle = {
+    backgroundColor: "#E4DCCF", // Color to change to when hovered
   };
 
   return (
@@ -60,35 +84,30 @@ const ProductItem = ({ product, onDelete }) => {
         />
       </Link>
       <CardContent style={contentBelowImageStyle}>
-        {/* Content below the image */}
         <Typography variant="h6">{product.title}</Typography>
         <Divider />
-        <div style={iconContainerStyle}>
-          {/* Counter */}
-          <Button style={blackIconStyle} onClick={() => setCount(count - 1)}>
-            -1
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Button style={blackIconStyle} onClick={() => handleIncrement(-1)}>
+            <RemoveIcon />
           </Button>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <div
-              style={{
-                width: "34px",
-                height: "34px",
-                borderRadius: "50%",
-                backgroundColor: "#FFBF9B",
-                color: "black",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              {count}
-            </div>
+          <div
+            style={{
+              ...circleIconStyle,
+              ...(count > product.quantity ? iconHoverStyle : null), // Apply hover style if count is greater
+            }}
+          >
+            {count}
           </div>
-          <Button style={blackIconStyle} onClick={() => setCount(count + 1)}>
-            +1
+          <Button style={blackIconStyle} onClick={() => handleIncrement(1)}>
+            <AddIcon />
           </Button>
         </div>
-
         <div style={iconContainerStyle}>
           <Button
             onClick={() => {
