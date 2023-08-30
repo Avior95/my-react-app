@@ -276,22 +276,16 @@ const App = () => {
     );
   };
   const handleIncrement = (productId, amount) => {
-    // Find the product to update
     const updatedProduct = products.find((product) => product.id === productId);
     if (updatedProduct) {
-      // Calculate the new quantity
       const newQuantity = updatedProduct.quantity + amount;
       if (newQuantity >= 0) {
-        // Update the quantity in the product
         updatedProduct.quantity = newQuantity;
-        // Find the index of the updated product in the products array
         const productIndex = products.findIndex(
           (product) => product.id === productId
         );
-        // Create a copy of the products array with the updated product
         const updatedProducts = [...products];
         updatedProducts[productIndex] = updatedProduct;
-        // Update the state and local storage
         setProducts(updatedProducts);
         localStorage.setItem("products", JSON.stringify(updatedProducts));
       }
@@ -301,6 +295,7 @@ const App = () => {
   return (
     <Router className="App">
       <div className="icons-container">
+        <div style={{ flex: 1 }}>Inventory Management</div>
         <Link to="/" style={{ color: "black" }} className="icon-grow">
           <HomeIcon />
         </Link>
@@ -308,6 +303,7 @@ const App = () => {
           <ControlPointIcon />
         </Link>
       </div>
+
       <Header
         filterByCategory={filterByCategory}
         setFilterByCategory={setFilterByCategory}

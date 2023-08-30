@@ -11,6 +11,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import StarIcon from "@mui/icons-material/Star";
 
 import { Link } from "react-router-dom";
 
@@ -44,8 +46,9 @@ const ProductItem = ({ product, onDelete, onIncrement }) => {
   const iconContainerStyle = {
     display: "flex",
     flexDirection: "row", // Horizontal arrangement
-    justifyContent: "flex-start", // Align to the left
+    justifyContent: "space-between", // Equal spacing between icons
     alignItems: "center",
+    flexWrap: "wrap", // Allow icons to wrap to the next line if needed
   };
 
   const blackIconStyle = {
@@ -66,11 +69,12 @@ const ProductItem = ({ product, onDelete, onIncrement }) => {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    transition: "background-color 0.3s ease", // Add transition for smooth color change
+    transition: "background-color 0.3s ease",
+    margin: "2px", // Add some margin to separate the icons
   };
 
   const iconHoverStyle = {
-    backgroundColor: "#E4DCCF", // Color to change to when hovered
+    backgroundColor: "#E4DCCF",
   };
 
   return (
@@ -91,6 +95,7 @@ const ProductItem = ({ product, onDelete, onIncrement }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            marginBottom: "15px",
           }}
         >
           <Button style={blackIconStyle} onClick={() => handleIncrement(-1)}>
@@ -99,7 +104,7 @@ const ProductItem = ({ product, onDelete, onIncrement }) => {
           <div
             style={{
               ...circleIconStyle,
-              ...(count > product.quantity ? iconHoverStyle : null), // Apply hover style if count is greater
+              ...(count > product.quantity ? iconHoverStyle : null),
             }}
           >
             {count}
@@ -109,16 +114,21 @@ const ProductItem = ({ product, onDelete, onIncrement }) => {
           </Button>
         </div>
         <div style={iconContainerStyle}>
-          <Button
-            onClick={() => {
-              window.location.href = `/edit/${product.id}`;
-            }}
-          >
-            <EditIcon style={blackIconStyle} />
-          </Button>
-          <Button onClick={() => onDelete(product.id)}>
-            <DeleteIcon style={blackIconStyle} />
-          </Button>
+          <div>
+            <Button
+              onClick={() => {
+                window.location.href = `/edit/${product.id}`;
+              }}
+            >
+              <EditIcon style={blackIconStyle} />
+            </Button>
+            <Button onClick={() => onDelete(product.id)}>
+              <DeleteIcon style={blackIconStyle} />
+            </Button>
+          </div>
+          {product.rating.rate > 4.5 && (
+            <StarIcon style={{ color: "#FFBF9B", marginLeft: 10 }} />
+          )}
         </div>
       </CardContent>
     </Card>

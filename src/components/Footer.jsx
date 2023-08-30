@@ -26,10 +26,10 @@ const Footer = () => {
           justifyContent: "center",
         }}
       >
-        <div style={{ marginRight: "1px" }}>
+        <div>Technical Support</div>
+        <div style={{ marginRight: "22px", marginLeft: "22px" }}>
           <FontAwesomeIcon icon={faPhone} />
         </div>
-        <div style={{ marginRight: "10px" }}>Technical Support</div>
         <div>(+972)52330374</div>
       </div>
     </footer>

@@ -9,15 +9,17 @@ const ProductList = ({ products, onDelete, onIncrement }) => {
   };
 
   return (
-    <div className="product-list" style={gridStyle}>
-      {products.map((product) => (
-        <ProductItem
-          key={product.id}
-          product={product}
-          onDelete={onDelete}
-          onIncrement={onIncrement}
-        />
-      ))}
+    <div className="product-list">
+      <div style={gridStyle}>
+        {products.map((product) => (
+          <ProductItem
+            key={product.id}
+            product={product}
+            onDelete={onDelete}
+            onIncrement={onIncrement}
+          />
+        ))}
+      </div>
     </div>
   );
 };
