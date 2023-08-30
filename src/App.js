@@ -1,6 +1,12 @@
 // App.js
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  useLocation,
+} from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ProductList from "./components/ProductList";
@@ -247,6 +253,7 @@ const App = () => {
   const [filterByCategory, setFilterByCategory] = useState("all");
   const [filterByTitle, setFilterByTitle] = useState("");
   const [deletedProducts, setDeletedProducts] = useState([]);
+  const [imageClicked, setImageClicked] = useState(false); // Add this state variable
 
   const filteredProduct = products.filter((product) => {
     return (
@@ -291,25 +298,34 @@ const App = () => {
       }
     }
   };
+  const handleCrudClick = () => {
+    setImageClicked(true);
+  };
+  const handleIconsClick = () => {
+    setImageClicked(false);
+  };
 
   return (
     <Router className="App">
-      <div className="icons-container">
-        <div style={{ flex: 1 }}>Inventory Management</div>
-        <Link to="/" style={{ color: "black" }} className="icon-grow">
-          <HomeIcon />
-        </Link>
-        <Link to="/add" style={{ color: "black" }} className="icon-grow">
-          <ControlPointIcon />
-        </Link>
-      </div>
-
-      <Header
-        filterByCategory={filterByCategory}
-        setFilterByCategory={setFilterByCategory}
-        filterByTitle={filterByTitle}
-        setFilterByTitle={setFilterByTitle}
-      />
+      {!imageClicked && (
+        <>
+          <div className="icons-container">
+            <div style={{ flex: 1 }}>Inventory Management</div>
+            <Link to="/" style={{ color: "black" }} className="icon-grow">
+              <HomeIcon />
+            </Link>
+            <Link to="/add" style={{ color: "black" }} className="icon-grow">
+              <ControlPointIcon />
+            </Link>
+          </div>
+          <Header
+            filterByCategory={filterByCategory}
+            setFilterByCategory={setFilterByCategory}
+            filterByTitle={filterByTitle}
+            setFilterByTitle={setFilterByTitle}
+          />
+        </>
+      )}
       <Routes>
         <Route
           path="/"
@@ -318,13 +334,18 @@ const App = () => {
               products={filteredProduct}
               onDelete={handleDelete}
               onIncrement={handleIncrement}
+              onCrudClick={handleCrudClick}
             />
           }
         />
         <Route
           path="/edit/:productId"
           element={
-            <ProductEditPage products={products} setProducts={setProducts} />
+            <ProductEditPage
+              products={products}
+              setProducts={setProducts}
+              onIconClick={handleIconsClick}
+            />
           }
         />
         <Route
@@ -335,7 +356,9 @@ const App = () => {
         />
         <Route
           path="/product/:productId"
-          element={<ProductDetail products={products} />}
+          element={
+            <ProductDetail products={products} onIconClick={handleIconsClick} />
+          }
         />
       </Routes>
       <Footer />

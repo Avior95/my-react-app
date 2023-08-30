@@ -2,11 +2,19 @@ import React from "react";
 import { useParams } from "react-router";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import EditIcon from "@mui/icons-material/Edit";
+import HomeIcon from "@mui/icons-material/Home";
 
-const ProductDetail = ({ products }) => {
+import { Link } from "react-router-dom";
+
+const ProductDetail = ({ products, onIconClick }) => {
   const { productId } = useParams();
   const product = products.find((p) => p.id === parseInt(productId));
 
+  const handleIconClick = () => {
+    onIconClick();
+  };
   if (!product) {
     return <div>Product not found</div>;
   }
@@ -52,11 +60,34 @@ const ProductDetail = ({ products }) => {
         backgroundColor: "#F9F5EB",
         minHeight: "100vh",
         display: "flex",
-        flexDirection: "column", // Added to stack the title and content vertically
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          left: "10px",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Link to="/" style={{ color: "black", marginRight: "10px" }}>
+          <ArrowBackIcon onClick={handleIconClick} />
+        </Link>
+
+        <Link
+          to={`/edit/${productId}`}
+          style={{ color: "black", marginRight: "10px" }}
+        >
+          <EditIcon onClick={handleIconClick} />
+        </Link>
+        <Link to="/" style={{ color: "black", marginLeft: "10px" }}>
+          <HomeIcon onClick={handleIconClick} />
+        </Link>
+      </div>
       <Typography variant="h3" align="center">
         Product Page
       </Typography>

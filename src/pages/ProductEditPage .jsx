@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import EditIcon from "@mui/icons-material/Edit";
+import HomeIcon from "@mui/icons-material/Home";
 
-const ProductEditPage = ({ products, setProducts }) => {
+const ProductEditPage = ({ products, setProducts, onIconClick }) => {
   const { productId } = useParams();
   const navigate = useNavigate();
 
@@ -32,6 +35,9 @@ const ProductEditPage = ({ products, setProducts }) => {
 
     navigate("/");
   };
+  const handleIconClick = () => {
+    onIconClick();
+  };
 
   const styles = {
     root: {
@@ -53,6 +59,22 @@ const ProductEditPage = ({ products, setProducts }) => {
 
   return (
     <div style={styles.root}>
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          left: "10px",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Link to="/" style={{ color: "black", marginRight: "10px" }}>
+          <ArrowBackIcon onClick={handleIconClick} />
+        </Link>
+        <Link to="/" style={{ color: "black", marginLeft: "10px" }}>
+          <HomeIcon onClick={handleIconClick} />
+        </Link>
+      </div>
       <div style={styles.container}>
         <Typography variant="h4" align="center">
           Edit Product

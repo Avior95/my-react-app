@@ -1,7 +1,7 @@
 import React from "react";
 import ProductItem from "./ProductItem";
 
-const ProductList = ({ products, onDelete, onIncrement }) => {
+const ProductList = ({ products, onDelete, onIncrement, onCrudClick }) => {
   const gridStyle = {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
@@ -17,6 +17,7 @@ const ProductList = ({ products, onDelete, onIncrement }) => {
             product={product}
             onDelete={onDelete}
             onIncrement={onIncrement}
+            onCrudClick={onCrudClick}
           />
         ))}
       </div>

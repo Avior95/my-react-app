@@ -27,7 +27,7 @@ const Footer = () => {
         }}
       >
         <div>Technical Support</div>
-        <div style={{ marginRight: "22px", marginLeft: "22px" }}>
+        <div style={{ marginRight: "15px", marginLeft: "15px" }}>
           <FontAwesomeIcon icon={faPhone} />
         </div>
         <div>(+972)52330374</div>

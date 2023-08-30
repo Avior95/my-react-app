@@ -11,12 +11,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 
 import { Link } from "react-router-dom";
 
-const ProductItem = ({ product, onDelete, onIncrement }) => {
+const ProductItem = ({ product, onDelete, onIncrement, onCrudClick }) => {
   const [count, setCount] = useState(product.quantity);
 
   const cardStyle = {
@@ -55,11 +54,6 @@ const ProductItem = ({ product, onDelete, onIncrement }) => {
     color: "black",
   };
 
-  const handleIncrement = (incrementValue) => {
-    setCount((prevCount) => prevCount + incrementValue);
-    onIncrement(product.id, incrementValue);
-  };
-
   const circleIconStyle = {
     width: "34px",
     height: "34px",
@@ -76,6 +70,13 @@ const ProductItem = ({ product, onDelete, onIncrement }) => {
   const iconHoverStyle = {
     backgroundColor: "#E4DCCF",
   };
+  const handleIncrement = (incrementValue) => {
+    setCount((prevCount) => prevCount + incrementValue);
+    onIncrement(product.id, incrementValue);
+  };
+  const handleCrudClick = () => {
+    onCrudClick();
+  };
 
   return (
     <Card className="product" style={cardStyle}>
@@ -85,6 +86,7 @@ const ProductItem = ({ product, onDelete, onIncrement }) => {
           alt={product.title}
           src={product.image}
           style={mediaStyle}
+          onClick={handleCrudClick}
         />
       </Link>
       <CardContent style={contentBelowImageStyle}>
@@ -114,14 +116,10 @@ const ProductItem = ({ product, onDelete, onIncrement }) => {
           </Button>
         </div>
         <div style={iconContainerStyle}>
+          <Link style={blackIconStyle} to={`/edit/${product.id}`}>
+            <EditIcon onClick={handleCrudClick} />
+          </Link>
           <div>
-            <Button
-              onClick={() => {
-                window.location.href = `/edit/${product.id}`;
-              }}
-            >
-              <EditIcon style={blackIconStyle} />
-            </Button>
             <Button onClick={() => onDelete(product.id)}>
               <DeleteIcon style={blackIconStyle} />
             </Button>
