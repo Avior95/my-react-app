@@ -5,8 +5,9 @@ import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Link } from "react-router-dom";
 
-const ProductAddPage = ({ products, setProducts }) => {
+const ProductAddPage = ({ products, setProducts, onIconClick }) => {
   const [newProduct, setNewProduct] = useState({
     title: "",
     category: "",
@@ -28,11 +29,7 @@ const ProductAddPage = ({ products, setProducts }) => {
   const handleSubmit = () => {
     const productId = products.length + 1;
     const newProductWithId = { id: productId, ...newProduct };
-
-    // Add the new product to the list of products
     setProducts([...products, newProductWithId]);
-
-    // Clear the form after submission
     setNewProduct({
       title: "",
       category: "",
@@ -41,13 +38,15 @@ const ProductAddPage = ({ products, setProducts }) => {
       quantity: "",
       description: "",
     });
-
-    // Optionally, you can save the updated product list to local storage
     localStorage.setItem(
       "products",
       JSON.stringify([...products, newProductWithId])
     );
     navigate("/");
+  };
+
+  const handleIconClick = () => {
+    onIconClick();
   };
 
   const styles = {
@@ -76,14 +75,24 @@ const ProductAddPage = ({ products, setProducts }) => {
 
   return (
     <div style={styles.root}>
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          left: "10px",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Link to="/" style={{ color: "black", marginLeft: "10px" }}>
+          <ArrowBackIcon onClick={handleIconClick} />
+        </Link>
+      </div>
       <div style={styles.container}>
         <Typography variant="h4" align="center">
           Add New Product
         </Typography>
-        <ArrowBackIcon
-          style={styles.backButton}
-          onClick={() => navigate("/")}
-        />
+
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <TextField
@@ -145,8 +154,6 @@ const ProductAddPage = ({ products, setProducts }) => {
               onChange={handleInputChange}
             />
           </Grid>
-
-          {/* Add similar TextFields for other product properties (category, price, image, quantity, description) */}
         </Grid>
 
         <div style={styles.button}>

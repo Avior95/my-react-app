@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => {
-  // Add a CSS rule to remove margin and padding from the body element
   document.body.style.margin = "0";
   document.body.style.padding = "0";
 
@@ -13,9 +12,9 @@ const Footer = () => {
         backgroundColor: "#333",
         color: "#fff",
         textAlign: "center",
-        position: "fixed", // Make the footer fixed
-        bottom: 0, // Stick it to the bottom
-        width: "100%", // Make the footer span the full width
+        position: "fixed",
+        bottom: 0,
+        width: "100%",
         height: "60px",
       }}
     >

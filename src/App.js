@@ -1,12 +1,6 @@
 // App.js
-import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ProductList from "./components/ProductList";
@@ -253,7 +247,7 @@ const App = () => {
   const [filterByCategory, setFilterByCategory] = useState("all");
   const [filterByTitle, setFilterByTitle] = useState("");
   const [deletedProducts, setDeletedProducts] = useState([]);
-  const [imageClicked, setImageClicked] = useState(false); // Add this state variable
+  const [imageClicked, setImageClicked] = useState(false);
 
   const filteredProduct = products.filter((product) => {
     return (
@@ -265,7 +259,6 @@ const App = () => {
   });
 
   const handleDelete = (productId) => {
-    // Find the product to be deleted
     const deletedProduct = products.find((product) => product.id === productId);
     const updatedProducts = products.filter(
       (product) => product.id !== productId
@@ -315,7 +308,7 @@ const App = () => {
               <HomeIcon />
             </Link>
             <Link to="/add" style={{ color: "black" }} className="icon-grow">
-              <ControlPointIcon />
+              <ControlPointIcon onClick={handleCrudClick} />
             </Link>
           </div>
           <Header
@@ -351,7 +344,11 @@ const App = () => {
         <Route
           path="/add"
           element={
-            <ProductAddPage products={products} setProducts={setProducts} />
+            <ProductAddPage
+              products={products}
+              setProducts={setProducts}
+              onIconClick={handleIconsClick}
+            />
           }
         />
         <Route

@@ -44,10 +44,10 @@ const ProductItem = ({ product, onDelete, onIncrement, onCrudClick }) => {
 
   const iconContainerStyle = {
     display: "flex",
-    flexDirection: "row", // Horizontal arrangement
-    justifyContent: "space-between", // Equal spacing between icons
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
-    flexWrap: "wrap", // Allow icons to wrap to the next line if needed
+    flexWrap: "wrap",
   };
 
   const blackIconStyle = {
@@ -64,7 +64,7 @@ const ProductItem = ({ product, onDelete, onIncrement, onCrudClick }) => {
     justifyContent: "center",
     alignItems: "center",
     transition: "background-color 0.3s ease",
-    margin: "2px", // Add some margin to separate the icons
+    margin: "2px",
   };
 
   const iconHoverStyle = {

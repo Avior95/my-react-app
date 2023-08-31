@@ -39,8 +39,8 @@ const SearchIconWrapper = styled.div`
   right: 0px;
   transform: translateY(-50%);
 
-  width: 30px; /* Set a fixed width for the icon wrapper */
-  height: 27px; /* Set a fixed height for the icon wrapper */
+  width: 30px;
+  height: 27px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,18 +53,10 @@ const SearchIconWrapper = styled.div`
   }
 `;
 
-const Header = ({
-  setFilterByCategory,
-  filterByCategory,
-  setFilterByTitle,
-  filterByTitle,
-}) => {
+const Header = ({ setFilterByCategory, setFilterByTitle, filterByTitle }) => {
   const [searchClicked, setSearchClicked] = useState(false);
 
   const handleSearchClick = () => {
-    // Execute the search or apply any other desired action here
-    // For example, you can call a function to handle the search:
-    // executeSearch();
     setSearchClicked(true);
   };
 

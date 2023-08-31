@@ -19,36 +19,31 @@ const ProductDetail = ({ products, onIconClick }) => {
     return <div>Product not found</div>;
   }
 
-  // Style for the square container with a black frame
   const containerStyle = {
     backgroundColor: "#F9F5EB",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: "1000px", // Set the desired width for the square container
-    height: "600px", // Set the desired height for the square container
-    border: "2px solid #000", // Thin black frame
+    width: "1000px",
+    height: "600px",
+    border: "2px solid #000",
     borderRadius: "25px",
-    position: "relative", // Add position relative to allow for the pseudo-element
+    position: "relative",
   };
 
-  // Style for the grid items to match the container size
   const gridItemStyle = {
-    width: "100%", // Match the container's width
-    height: "100%", // Match the container's height
+    width: "100%",
+    height: "100%",
     borderRadius: "25px",
   };
 
-  // Style for the right side (product details) background color
   const rightSideStyle = {
-    backgroundColor: "#F9F5EB", // Background color for the right side
+    backgroundColor: "#F9F5EB",
     padding: "16px",
     borderRadius: "25px",
-    // Rounded corners on the right side
-    height: "100%", // Ensure the right side fills the entire height
+    height: "100%",
   };
 
-  // Style for key-value pairs
   const keyValueStyle = {
     fontWeight: "bold",
     margin: "0",
@@ -94,7 +89,6 @@ const ProductDetail = ({ products, onIconClick }) => {
 
       <div style={containerStyle}>
         <Grid container style={{ width: "100%", height: "100%" }}>
-          {/* Image on the left */}
           <Grid item xs={6} style={gridItemStyle}>
             <div
               style={{
@@ -113,12 +107,11 @@ const ProductDetail = ({ products, onIconClick }) => {
               />
             </div>
           </Grid>
-          {/* Product details on the right */}
           <Grid item xs={6} style={rightSideStyle}>
             <div
               style={{
                 padding: "16px",
-                height: "100%", // Ensure the right side fills the entire height
+                height: "100%",
                 display: "flex",
                 flexDirection: "column",
               }}
