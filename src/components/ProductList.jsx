@@ -7,9 +7,14 @@ const ProductList = ({ products, onDelete, onIncrement, onCrudClick }) => {
     gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
     gap: "20px",
   };
+  const productList = {
+    backgroundColor: "#F9F5EB",
+  };
 
   return (
-    <div className="product-list">
+    <div style={productList}>
+      <h1 style={{ textAlign: "center", color: "grey" }}>Products</h1>
+
       <div style={gridStyle}>
         {products.map((product) => (
           <ProductItem

@@ -1,11 +1,10 @@
 .App {
   background-color: #f9f5eb;
 }
-/* App.css (or your CSS file) */
 
 .icons-container {
   display: flex;
-  justify-content: flex-end; /* Align icons to the right */
+  justify-content: flex-end;
   background-color: #ffdecb;
 }
 
@@ -15,11 +14,11 @@
 }
 
 .icons-container a:hover {
-  transform: scale(1.2); /* Increase the scaling factor for hover */
+  transform: scale(1.2);
 }
 
 .product-list-container {
   display: flex;
-  justify-content: center; /* Center-align the content horizontally */
-  gap: 20px; /* Add spacing between cards */
+  justify-content: center;
+  gap: 20px;
 }

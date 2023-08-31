@@ -25,6 +25,7 @@ const ProductItem = ({ product, onDelete, onIncrement, onCrudClick }) => {
     boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
     display: "flex",
     flexDirection: "column",
+    marginBottom: "70px",
   };
 
   const mediaStyle = {
@@ -45,7 +46,6 @@ const ProductItem = ({ product, onDelete, onIncrement, onCrudClick }) => {
   const iconContainerStyle = {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
     flexWrap: "wrap",
   };
@@ -70,6 +70,7 @@ const ProductItem = ({ product, onDelete, onIncrement, onCrudClick }) => {
   const iconHoverStyle = {
     backgroundColor: "#E4DCCF",
   };
+
   const handleIncrement = (incrementValue) => {
     setCount((prevCount) => prevCount + incrementValue);
     onIncrement(product.id, incrementValue);
@@ -119,14 +120,14 @@ const ProductItem = ({ product, onDelete, onIncrement, onCrudClick }) => {
           <Link style={blackIconStyle} to={`/edit/${product.id}`}>
             <EditIcon onClick={handleCrudClick} />
           </Link>
+          <Button onClick={() => onDelete(product.id)}>
+            <DeleteIcon style={blackIconStyle} />
+          </Button>
           <div>
-            <Button onClick={() => onDelete(product.id)}>
-              <DeleteIcon style={blackIconStyle} />
-            </Button>
+            {product.rating && product.rating.rate > 4.5 && (
+              <StarIcon style={{ color: "#FFBF9B", marginLeft: "120px" }} />
+            )}
           </div>
-          {product.rating.rate > 4.5 && (
-            <StarIcon style={{ color: "#FFBF9B", marginLeft: 10 }} />
-          )}
         </div>
       </CardContent>
     </Card>

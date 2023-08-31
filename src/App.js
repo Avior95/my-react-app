@@ -21,7 +21,7 @@ const App = () => {
         "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
       category: "men's clothing",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      rating: { rate: 3.9, count: 120 },
+      rating: { rate: 5.9, count: 120 },
       quantity: 5,
     },
     {
@@ -55,7 +55,7 @@ const App = () => {
         "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
       category: "men's clothing",
       image: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
-      rating: { rate: 2.1, count: 430 },
+      rating: { rate: 6.1, count: 430 },
       quantity: 5,
     },
     {
@@ -100,7 +100,7 @@ const App = () => {
         "Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel",
       category: "jewelery",
       image: "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg",
-      rating: { rate: 1.9, count: 100 },
+      rating: { rate: 5.9, count: 100 },
       quantity: 5,
     },
     {
@@ -134,7 +134,7 @@ const App = () => {
         "3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance. The advanced SLC Cache Technology allows performance boost and longer lifespan 7mm slim design suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM command, Garbage Collection technology, RAID, and ECC(Error Checking & Correction) to provide the optimized performance and enhanced reliability.",
       category: "electronics",
       image: "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
-      rating: { rate: 4.8, count: 319 },
+      rating: { rate: 6.8, count: 319 },
       quantity: 5,
     },
     {
@@ -299,67 +299,72 @@ const App = () => {
   };
 
   return (
-    <Router className="App">
-      {!imageClicked && (
-        <>
-          <div className="icons-container">
-            <div style={{ flex: 1 }}>Inventory Management</div>
-            <Link to="/" style={{ color: "black" }} className="icon-grow">
-              <HomeIcon />
-            </Link>
-            <Link to="/add" style={{ color: "black" }} className="icon-grow">
-              <ControlPointIcon onClick={handleCrudClick} />
-            </Link>
-          </div>
-          <Header
-            filterByCategory={filterByCategory}
-            setFilterByCategory={setFilterByCategory}
-            filterByTitle={filterByTitle}
-            setFilterByTitle={setFilterByTitle}
+    <div className="App">
+      <Router>
+        {!imageClicked && (
+          <>
+            <div className="icons-container">
+              <div style={{ flex: 1 }}>Inventory Management</div>
+              <Link to="/" style={{ color: "black" }} className="icon-grow">
+                <HomeIcon />
+              </Link>
+              <Link to="/add" style={{ color: "black" }} className="icon-grow">
+                <ControlPointIcon onClick={handleCrudClick} />
+              </Link>
+            </div>
+            <Header
+              filterByCategory={filterByCategory}
+              setFilterByCategory={setFilterByCategory}
+              filterByTitle={filterByTitle}
+              setFilterByTitle={setFilterByTitle}
+            />
+          </>
+        )}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProductList
+                products={filteredProduct}
+                onDelete={handleDelete}
+                onIncrement={handleIncrement}
+                onCrudClick={handleCrudClick}
+              />
+            }
           />
-        </>
-      )}
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <ProductList
-              products={filteredProduct}
-              onDelete={handleDelete}
-              onIncrement={handleIncrement}
-              onCrudClick={handleCrudClick}
-            />
-          }
-        />
-        <Route
-          path="/edit/:productId"
-          element={
-            <ProductEditPage
-              products={products}
-              setProducts={setProducts}
-              onIconClick={handleIconsClick}
-            />
-          }
-        />
-        <Route
-          path="/add"
-          element={
-            <ProductAddPage
-              products={products}
-              setProducts={setProducts}
-              onIconClick={handleIconsClick}
-            />
-          }
-        />
-        <Route
-          path="/product/:productId"
-          element={
-            <ProductDetail products={products} onIconClick={handleIconsClick} />
-          }
-        />
-      </Routes>
-      <Footer />
-    </Router>
+          <Route
+            path="/edit/:productId"
+            element={
+              <ProductEditPage
+                products={products}
+                setProducts={setProducts}
+                onIconClick={handleIconsClick}
+              />
+            }
+          />
+          <Route
+            path="/add"
+            element={
+              <ProductAddPage
+                products={products}
+                setProducts={setProducts}
+                onIconClick={handleIconsClick}
+              />
+            }
+          />
+          <Route
+            path="/product/:productId"
+            element={
+              <ProductDetail
+                products={products}
+                onIconClick={handleIconsClick}
+              />
+            }
+          />
+        </Routes>
+        <Footer />
+      </Router>
+    </div>
   );
 };
 

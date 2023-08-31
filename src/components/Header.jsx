@@ -6,10 +6,10 @@ const StyledButton = styled.button`
   background-color: #ffbf9b;
   color: grey;
   border: 1px solid black;
-  border-radius: 20px;
-  padding: 5px 20px;
+  border-radius: 15px;
+  padding: 5px 10px;
   cursor: pointer;
-  margin-right: 10px;
+  margin-right: 5px;
   font-weight: bold;
   transition: background-color 0.3s;
 
@@ -17,7 +17,6 @@ const StyledButton = styled.button`
     background-color: #ffdecb;
   }
 `;
-
 const StyledInputWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -74,7 +73,7 @@ const Header = ({ setFilterByCategory, setFilterByTitle, filterByTitle }) => {
           style={{
             display: "flex",
             alignItems: "center",
-            marginLeft: "200px",
+            marginLeft: "50px",
           }}
         >
           <StyledButton onClick={() => setFilterByCategory("all")}>
